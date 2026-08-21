@@ -1,7 +1,7 @@
 name: Publicar imagenes de Docker Hub
 on:
   push:
-    branches: ["main"]
+    branches: ["main", "master"]
 jobs:
   test:
     runs-on: ubuntu-latest
