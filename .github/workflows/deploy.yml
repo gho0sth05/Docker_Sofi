@@ -50,5 +50,5 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY}}
           script: |
             cd ~/Docker_Sofi
-            docker compose pull app-backend
+            docker compose pull backend
             docker compose up -d
