@@ -1,0 +1,67 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: servidor-bd-082
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+    volumes:
+      - mysql-data:/var/lib/mysql
+    healthcheck:
+      healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-psena123"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: always
+    networks:
+      - mi-red
+
+  backend:
+    image: shofis05/sampleapp:v1
+    container_name: backend-082
+    ports:
+      - "5051:5051"
+    environment:
+      - DB_HOST=servidor-bd-082
+      - DB_USER=root
+      - DB_PASSWORD=sena123
+      - DB_NAME=082_db
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: always
+    networks:
+      - mi-red
+
+  proxy-manager:
+    image: jc21/nginx-proxy-manager:latest
+    container_name: proxy-manager
+    restart: always
+    ports:
+      - "80:80"
+      - "81:81"
+      - "443:443"
+    networks:
+      - mi-red
+
+  uptime-kuma:
+    image: louislam/uptime-kuma:1
+    container_name: uptime-kuma
+    restart: always
+    ports:
+      - "3001:3001"
+    volumes:
+      - uptime-kuma-data:/app/data
+    networks:
+      - mi-red
+
+volumes:
+  mysql-data:
+  uptime-kuma-data:
+
+networks:
+  mi-red:
+    driver: bridge

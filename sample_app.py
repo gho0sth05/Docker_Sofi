@@ -1,12 +1,23 @@
 from flask import Flask
-from flask import request
+import pymysql
 
 sample = Flask(__name__)
 
-@sample.route ("/")
+@sample.route("/")
+def home():
+    try:
+        conn = pymysql.connect(
+            host="servidor-bd-082",
+            user="root",
+            password="sena123",
+            database="082_db"
+        )
+        conn.close()
+        db_status = "Conexión exitosa a la base de datos ----"
+    except Exception as e:
+        db_status = f"Error al conectar a la base de datos: {e}"
 
-def main():
-    return "Me estás llamando desde " + request.remote_addr + "\n"
+    return f"<h1>Bienvenido a mi aplicación Flask</h1><p>{db_status}</p>"
 
 if __name__ == "__main__":
-     sample.run (host="0.0.0.0", port=5050)
+    sample.run(host="0.0.0.0", port=5051, debug=True)
