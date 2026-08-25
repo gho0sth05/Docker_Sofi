@@ -56,7 +56,7 @@ jobs:
           exit-code: '1' # Si se encuentra alguna falla , rompe la ejecucion
           ignore-unfixed: true
           vuln-type: 'os,library'
-          severety: 'CRITICAL,HIGH' # Son los que van a detener la ejecucion
+          severity:: 'CRITICAL,HIGH' # Son los que van a detener la ejecucion
       
       - name: Subir imagen a Docker Hub
         uses: docker/build-push-action@v4
