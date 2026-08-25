@@ -8,4 +8,4 @@ def test_ruta_principal():
 
     respuesta = cliente.get("/")
     
-    assert respuesta.status_code == 200
+    assert respuesta.status_code == 200  # nosec B101
