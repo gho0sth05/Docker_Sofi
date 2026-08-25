@@ -47,8 +47,7 @@ services:
     networks:
       - red-cba
     depends_on:
-      servidor-bd:
-        condition: service_healthy
+      - servidor-bd
 
   uptime-kuma:
     image: louislam/uptime-kuma:1
