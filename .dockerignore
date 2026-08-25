@@ -1,2 +1,12 @@
 venv /
 __pycache__
+# Ignorar llaves y credenciales
+*.pem
+*.key
+*.env
+
+# Ignorar entornos y cachés
+venv/
+__pycache__/
+.git/
+.github/
