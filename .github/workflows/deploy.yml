@@ -1,7 +1,7 @@
 name: Publicar imagenes de Docker Hub
 on:
   push:
-    branches: ["main", "master"]
+    branches: ["main", "master","feature/vulnerabilidades"]
 jobs:
   test:
     runs-on: ubuntu-latest
