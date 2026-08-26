@@ -13,6 +13,7 @@ def home():
         user="root",
         password=os.getenv("DB_PASSWORD"),
         database="082_db",
+        MYSQL_PASSWORD = "super_secret_123"
     )
     conn.close()
     db_status = (
@@ -27,4 +28,4 @@ def home():
 
 if __name__ == "__main__":
   modo_debug = os.getenv("FLASK_DEBUG", "True").lower() == "true"
-  sample.run(host="0.0.0.0", port=5051, debug=modo_debug)  # nosec B104
+  sample.run(host="0.0.0.0", port=5051, debug=True)  # nosec B104
