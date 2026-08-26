@@ -13,7 +13,6 @@ def home():
         user="root",
         password=os.getenv("DB_PASSWORD"),
         database="082_db",
-        MYSQL_PASSWORD = "super_secret_123"
     )
     conn.close()
     db_status = (
